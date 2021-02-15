@@ -1,46 +1,50 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
-import mock from './mocks/ciudades'
-import './App.css'
+import {
+  BUSCAR,
+  ACTUALIZAR,
+  DETALLE,
+  LIMPIAR,
+} from './constants';
+import './App.css';
 
 const App = () => {
   const dispatch = useDispatch()
-  const data = useSelector(({ climaReducer }) => climaReducer.ciudades)
-  const detalle = useSelector(({ climaReducer }) => climaReducer.selected)
-  const buscarClima = (event) => {
+  const data = useSelector(
+    ({ climaReducer }) => climaReducer.ciudades
+  )
+  const detalle = useSelector(
+    ({ climaReducer }) => climaReducer.select
+  )
+  const buscarClima = event => {
     event.preventDefault()
-    const response = mock.find((ciudad) => ciudad.name.toLowerCase() === event.target.ciudad.value.toLowerCase())
-    dispatch({ type: 'BUSCAR', payload: response })
+    const text = event.target.ciudad.value
+    event.target.ciudad.value = ''
+    dispatch({ type: BUSCAR, payload: text })
   }
-
-  const actualizarClima = (id) => {
-    const ciudadName = data[id].name
-    if (!ciudadName) return
-    const response = mock.find((ciudad) => ciudad.name.toLowerCase() === ciudadName.toLowerCase())
-    data[id] = response
-    dispatch({ type: 'ACTUALIZAR', payload: data })
+  const actualizarClima = id => {
+    dispatch({ type: ACTUALIZAR, payload: id })
   }
-
-  const verDetalle = (id) => {
-    const ciudad = {
-      ...data[id],
-      id,
-    }
-    dispatch({ type: 'DETALLE', payload: ciudad })
+  const verDetalle = id => {
+    dispatch({ type: DETALLE, payload: id })
+  }
+  const limpiar = () => {
+    dispatch({ type: LIMPIAR })
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <form onSubmit={(event) => buscarClima(event)}>
-          <input type="text" name="ciudad" />
+        <button onClick={() => limpiar()}>Limpiar</button>
+        <br />
+        <form onSubmit={event => buscarClima(event)} >
+          <input type='text' name='ciudad' />
           <button>Buscar</button>
         </form>
-
         <br />
         <div>
           <table>
-            <caption>Resultados</caption>
+          <caption>Resultados</caption>
             <tbody>
               <tr>
                 <th>#</th>
@@ -68,7 +72,7 @@ const App = () => {
         {detalle && (
           <div>
             <table>
-              <caption>Detalle</caption>
+            <caption>Detalle</caption>
               <tbody>
                 <tr>
                   <th>Ciudad</th>
@@ -80,25 +84,25 @@ const App = () => {
                   <th>Presión</th>
                   <th>Acción</th>
                 </tr>
-                <tr key={detalle.id}>
-                  <td>{detalle.name}</td>
-                  <td>{detalle.main.temp}</td>
-                  <td>{detalle.main.temp_max}</td>
-                  <td>{detalle.main.temp_min}</td>
-                  <td>{detalle.main.feels_like}</td>
-                  <td>{detalle.main.humidity}</td>
-                  <td>{detalle.main.pressure}</td>
-                  <td>
-                    <button onClick={() => actualizarClima(detalle.id)}>Actualizar</button>
-                  </td>
-                </tr>
+                  <tr key={detalle.id}>
+                    <td>{detalle.name}</td>
+                    <td>{detalle.main.temp}</td>
+                    <td>{detalle.main.temp_max}</td>
+                    <td>{detalle.main.temp_min}</td>
+                    <td>{detalle.main.feels_like}</td>
+                    <td>{detalle.main.humidity}</td>
+                    <td>{detalle.main.pressure}</td>
+                    <td>
+                      <button onClick={() => actualizarClima(detalle.id)}>Actualizar</button>
+                    </td>
+                  </tr>
               </tbody>
             </table>
           </div>
         )}
       </header>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

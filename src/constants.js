@@ -1,0 +1,6 @@
+export const BUSCAR = 'BUSCAR'
+export const BUSCAR_SUCCESS = 'BUSCAR_SUCCESS'
+export const ACTUALIZAR = 'ACTUALIZAR'
+export const ACTUALIZAR_SUCCESS = 'ACTUALIZAR_SUCCESS'
+export const DETALLE = 'DETALLE'
+export const DETALLE_SUCCESS = 'DETALLE_SUCCESS'

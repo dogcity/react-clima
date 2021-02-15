@@ -25,6 +25,8 @@ const climaReducer = (state = initialState, action) => {
                 ...state,
                 selected: action.payload,
             }
+        case 'LIMPIAR':
+            return initialState
         default:
             return state
     }

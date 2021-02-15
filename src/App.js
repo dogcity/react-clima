@@ -13,6 +13,8 @@ const App = () => {
   )
   const buscarClima = event => {
     event.preventDefault()
+    const valid = data.find(ciudad => ciudad.name.toLowerCase() === event.target.ciudad.value.toLowerCase())
+    if (valid) return
     const response = mock.find(ciudad => ciudad.name.toLowerCase() === event.target.ciudad.value.toLowerCase())
     dispatch({ type: 'BUSCAR', payload: response })
   }
@@ -29,18 +31,23 @@ const App = () => {
     const ciudad = {
       ...data[id],
       id,
-  }
+    }
     dispatch({ type: 'DETALLE', payload: ciudad })
+  }
+
+  const limpiar = () => {
+    dispatch({ type: 'LIMPIAR' })
   }
 
   return (
     <div className="App">
       <header className="App-header">
+        <button onClick={() => limpiar()}>Limpiar</button>
+        <br />
         <form onSubmit={event => buscarClima(event)} >
           <input type='text' name='ciudad' />
           <button>Buscar</button>
         </form>
-        
         <br />
         <div>
           <table>

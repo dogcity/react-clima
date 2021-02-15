@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import mock from './mocks/ciudades';
+import { buscar, actualizar, detalleId } from './actions/clima';
 import './App.css';
 
 const App = () => {
@@ -13,24 +13,15 @@ const App = () => {
   )
   const buscarClima = event => {
     event.preventDefault()
-    const response = mock.find(ciudad => ciudad.name.toLowerCase() === event.target.ciudad.value.toLowerCase())
-    dispatch({ type: 'BUSCAR', payload: response })
+    dispatch(buscar(event.target.ciudad.value))
   }
 
   const actualizarClima = id => {
-    const ciudadName = data[id].name
-    if(!ciudadName) return
-    const response = mock.find(ciudad => ciudad.name.toLowerCase() === ciudadName.toLowerCase())
-    data[id] = response
-    dispatch({ type: 'ACTUALIZAR', payload: data })
+    dispatch(actualizar(id))
   }
 
   const verDetalle = id => {
-    const ciudad = {
-      ...data[id],
-      id,
-  }
-    dispatch({ type: 'DETALLE', payload: ciudad })
+    dispatch(detalleId(id))
   }
 
   return (

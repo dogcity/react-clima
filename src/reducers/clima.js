@@ -1,33 +1,28 @@
 const initialState = {
-    ciudades: [],
-    selected: null,
+  ciudades: [],
+  selected: null,
 }
 
 const climaReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'BUSCAR':
-            return {
-                ...state,
-                ciudades: [
-                    ...state.ciudades,
-                    action.payload,
-                ],
-            }
-        case 'ACTUALIZAR':
-            return {
-                ...state,
-                ciudades: [
-                    ...action.payload,
-                ],
-            }
-        case 'DETALLE':
-            return {
-                ...state,
-                selected: action.payload,
-            }
-        default:
-            return state
-    }
+  switch (action.type) {
+    case 'BUSCAR':
+      return {
+        ...state,
+        ciudades: [...state.ciudades, action.payload],
+      }
+    case 'ACTUALIZAR':
+      return {
+        ...state,
+        ciudades: [...action.payload],
+      }
+    case 'DETALLE':
+      return {
+        ...state,
+        selected: action.payload,
+      }
+    default:
+      return state
+  }
 }
 
 export default climaReducer

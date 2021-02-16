@@ -1,1 +1,1 @@
-export const getCiudades = state => state.climaReducer.ciudades
+export const getCiudades = (state) => state.climaReducer.ciudades

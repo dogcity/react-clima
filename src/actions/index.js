@@ -1,9 +1,7 @@
-import { all } from 'redux-saga/effects';
+import { all } from 'redux-saga/effects'
 
-import clima from './clima';
+import clima from './clima'
 
 export default function* rootSaga() {
-    yield all([
-        clima(),
-    ])
+  yield all([clima()])
 }

@@ -1,15 +1,11 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-} from 'redux'
-import sagas from 'redux-saga';
+import { createStore, compose, applyMiddleware } from 'redux'
+import sagas from 'redux-saga'
 import { persistReducer, persistStore, createMigrate } from 'redux-persist'
 import localforage from 'localforage'
 
-import rootSaga from './actions';
+import rootSaga from './actions'
 import rootReducer from './reducers'
-import migrations from './migrations';
+import migrations from './migrations'
 
 const sagaMiddleware = sagas()
 const persistConfig = {
@@ -25,10 +21,9 @@ export const store = {
     persistedReducer,
     compose(
       applyMiddleware(sagaMiddleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__
-      && window.__REDUX_DEVTOOLS_EXTENSION__(),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     ),
-    runSaga: sagaMiddleware.run(rootSaga),
+  ),
+  runSaga: sagaMiddleware.run(rootSaga),
 }
 export const persistore = persistStore(store)
-  

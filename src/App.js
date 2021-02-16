@@ -31,6 +31,9 @@ const App = () => {
   const limpiar = () => {
     dispatch({ type: LIMPIAR })
   }
+  const limpiar = () => {
+    dispatch({ type: 'LIMPIAR' })
+  }
 
   return (
     <div className="App">

@@ -1,4 +1,4 @@
-import { BUSCAR_SUCCESS } from '../constants'
+import { BUSCAR_SUCCESS, ACTUALIZAR_SUCCESS, DETALLE_SUCCESS, LIMPIAR } from '../constants'
 
 const initialState = {
   ciudades: [],
@@ -12,17 +12,17 @@ const climaReducer = (state = initialState, action) => {
         ...state,
         ciudades: [...state.ciudades, action.payload],
       }
-    case 'ACTUALIZAR_SUCCESS':
+    case ACTUALIZAR_SUCCESS:
       return {
         ...state,
         ciudades: [...action.payload],
       }
-    case 'DETALLE_SUCCESS':
+    case DETALLE_SUCCESS:
       return {
         ...state,
         select: action.payload,
       }
-    case 'LIMPIAR':
+    case LIMPIAR:
       return initialState
     default:
       return state

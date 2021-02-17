@@ -6,6 +6,7 @@ import localforage from 'localforage'
 import rootSaga from './actions'
 import rootReducer from './reducers'
 import migrations from './migrations'
+import middleware from './middleware'
 
 const sagaMiddleware = sagas()
 const persistConfig = {
@@ -20,7 +21,7 @@ export const store = {
   ...createStore(
     persistedReducer,
     compose(
-      applyMiddleware(sagaMiddleware),
+      applyMiddleware(middleware.actionLogger, sagaMiddleware),
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     ),
   ),

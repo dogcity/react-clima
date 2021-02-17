@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { BUSCAR, ACTUALIZAR, DETALLE, LIMPIAR } from './constants'
+import socket from './socket'
 import './App.css'
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
   const limpiar = () => {
     dispatch({ type: LIMPIAR })
   }
+
+  useEffect(() => !socket.isConnected && socket.connect())
 
   return (
     <div className="App">

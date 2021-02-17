@@ -1,10 +1,10 @@
-import { ADD_QUEUE_ACTION, LIMPIAR } from '../constants'
+import { ADD_QUEUE_ACTION_SUCCESS, LIMPIAR } from '../constants'
 
 const initialState = []
 
 const logReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_QUEUE_ACTION:
+    case ADD_QUEUE_ACTION_SUCCESS:
       return [...state, action.payload]
     case LIMPIAR:
       return initialState

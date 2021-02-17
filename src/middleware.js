@@ -1,4 +1,11 @@
-import { ADD_QUEUE_ACTION, BUSCAR_SUCCESS, ACTUALIZAR_SUCCESS, DETALLE, DETALLE_SUCCESS } from './constants'
+import {
+  ADD_QUEUE_ACTION_SUCCESS,
+  ADD_QUEUE_ACTION,
+  BUSCAR_SUCCESS,
+  ACTUALIZAR_SUCCESS,
+  DETALLE,
+  DETALLE_SUCCESS,
+} from './constants'
 
 const omit = [
   BUSCAR_SUCCESS,
@@ -8,6 +15,7 @@ const omit = [
   ADD_QUEUE_ACTION,
   'persist/PERSIST',
   'persist/REHYDRATE',
+  ADD_QUEUE_ACTION_SUCCESS,
 ]
 
 const actionLogger = ({ dispatch }) => (next) => (action) => {
